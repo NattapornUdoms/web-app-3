@@ -22,8 +22,8 @@ steps:
       - 'managed'
       - '--allow-unauthenticated'
 
-substitutions:
-  _SERVICE_NAME: 'my-app-3'
+#substitutions:
+#  _SERVICE_NAME: 'my-app-3'
 
 images:
   - 'gcr.io/test-03-429102/my-app-3'
