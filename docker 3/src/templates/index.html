@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advertisement Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#">main</a>
+        <div class="right-links">
+            <a href="#">report a problem</a>
+            <a href="#">log in</a>
+        </div>
+    </nav>
+
+    <div class="container youtube">
+        <div class="video-container">
+            <iframe id="youtubePlayer" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+        <form id="urlForm" class="url-form" method="POST" action="/">
+            <input type="text" id="youtubeURL" name="youtubeURL" placeholder="Enter YouTube URL" required>
+            <button type="submit">Enter</button>
+        </form>
+
+        <div class="video-feed-container">
+            <img id="videoFeed" src="{{ url_for('video_feed', youtube_url=youtube_url) }}" alt="YOLO Video Feed">
+        </div>
+    </div>
+
+    <div class="container result-section">
+        <div class="tabs">
+            <button class="tablink" onclick="openTab(event, 'Logo')">Logo</button>
+            <button class="tablink" onclick="openTab(event, 'Result')">Result</button>
+        </div>
+        <div id="Logo" class="tabcontent">
+            <!-- Form สำหรับค้นหาแบรนด์ -->
+            <form id="brandForm" class="brand-form">
+                <input type="text" id="brandName" placeholder="Enter Brand Name" required>
+                <button type="submit">Search</button>
+            </form>
+
+            <!-- ลิงก์สำหรับเลือกหมวดหมู่ -->
+            <div id="categories" class="categories">
+                <a href="#" class="category-link" onclick="filterByCategory('all')">All</a>
+                <a href="#" class="category-link" onclick="filterByCategory('drink')">Drink</a>
+                <a href="#" class="category-link" onclick="filterByCategory('snack')">Snack</a>
+                <a href="#" class="category-link" onclick="filterByCategory('sport-shirt')">Sport shirt</a>
+                <a href="#" class="category-link" onclick="filterByCategory('engine')">Engine</a>
+                <a href="#" class="category-link" onclick="filterByCategory('hair-care')">Hair care</a>
+            </div>
+
+            <!-- โลโก้ที่เพิ่มเข้ามาโดยอัตโนมัติ -->
+            <div id="defaultLogos" class="default-logos">
+                <!-- Logos will be added here dynamically -->
+            </div>
+
+            <!-- แสดงภาพที่เลือก -->
+            <div class="image-container" id="imageContainer">
+                <!-- Images will be displayed here -->
+            </div>
+        </div>
+
+        <div id="Result" class="tabcontent">
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
