@@ -1,0 +1,29 @@
+steps:
+  # Step 1: Build Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/test-03-429102/my-app-3', '.']
+  
+  # Step 2: Push Docker image to Container Registry (หรือ Artifact Registry)
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/test-03-429102/my-app-3']
+
+  # Step 3: Deploy to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'my-app-3'
+      - '--image'
+      - 'gcr.io/test-03-429102/my-app-3'
+      - '--region'
+      - 'us-central1'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'
+
+substitutions:
+  _SERVICE_NAME: 'my-app-3'
+
+images:
+  - 'gcr.io/test-03-429102/my-app-3'
