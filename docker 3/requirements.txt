@@ -1,6 +1,0 @@
-Flask
-torch
-opencv-python
-pafy
-yt-dlp
-ultralytics
